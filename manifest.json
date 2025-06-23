@@ -1,0 +1,9 @@
+{
+  "id": "hexnoun",
+  "version": "1.0.0",
+  "name": "hexnoun",
+  "entrypoints": {
+    "dynamic": "main.lua"
+  },
+  "mappings": "yarn"
+}
