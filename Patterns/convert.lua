@@ -2,7 +2,6 @@ local HexEvalSounds = require("at.petrak.hexcasting.common.lib.hex.HexEvalSounds
 local OperationResult = require("at.petrak.hexcasting.api.casting.eval.OperationResult")
 local Identifier = require("net.minecraft.util.Identifier")
 local Registries = require("net.minecraft.registry.Registries")
-local SpellContinuation = require("at.petrak.hexcasting.api.casting.eval.vm.SpellContinuation")
 
 local StringIota = require("ram.talia.moreiotas.api.casting.iota.StringIota")
 local IdentifierIota = require("miyucomics.hexical.casting.iotas.IdentifierIota")
@@ -31,7 +30,7 @@ return function(env, image, continuation)
     else
         table.insert(stack, NullIota()) -- TODO: Mishaps
     end
-    
+
     local newImage = image:copy(stack, image.parenCount, image.parenthesized, image.escapeNext, image.opsConsumed + 1, image.userData)
     return OperationResult(newImage, {}, continuation, HexEvalSounds.NORMAL_EXECUTE)
 end
