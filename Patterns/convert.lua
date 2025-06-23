@@ -20,7 +20,7 @@ local iotaConversions = {
 
 return function(env, image, continuation)
     local stack = image.stack:toArray()
-    
+
     local iota = table.remove(stack)
     local iotaType = iota:getClass():getName()
 
@@ -32,5 +32,5 @@ return function(env, image, continuation)
         table.insert(stack, NullIota()) -- TODO: Mishaps
     end
 
-    return OperationResult(image.withUsedOp(), {}, continuation, HexEvalSounds.NORMAL_EXECUTE)
+    return OperationResult(image:withUsedOp(), {}, continuation, HexEvalSounds.NORMAL_EXECUTE)
 end
