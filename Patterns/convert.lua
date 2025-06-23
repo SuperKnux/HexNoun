@@ -31,6 +31,7 @@ return function(env, image, continuation)
     else
         table.insert(stack, NullIota()) -- TODO: Mishaps
     end
-
-    return OperationResult(image:withUsedOp(), {}, continuation, HexEvalSounds.NORMAL_EXECUTE)
+    
+    local newImage = image:copy(stack, image.parenCount, image.parenthesized, image.escapeNext, image.opsConsumed + 1, image.userData)
+    return OperationResult(newImage, {}, continuation, HexEvalSounds.NORMAL_EXECUTE)
 end
