@@ -5,12 +5,21 @@ local MediaConstants = require("at.petrak.hexcasting.api.misc.MediaConstants")
 local Registry = require("net.minecraft.registry.Registry")
 local HexActions = require("at.petrak.hexcasting.common.lib.hex.HexActions")
 
+-- Registry.register(
+--     HexActions.REGISTRY,
+--     "test",
+--     ActionRegistryEntry(
+--         HexPattern.fromAngles("ede", HexDir.SOUTH_EAST),
+--         require("Patterns.test")
+--     )
+-- )
+
 Registry.register(
     HexActions.REGISTRY,
-    "test",
+    "convert",
     ActionRegistryEntry(
-        HexPattern.fromAngles("ede", HexDir.SOUTH_EAST),
-        require("Patterns.test")
+        HexPattern.fromAngles("qqqqqeaqddqd", HexDir.NORTH_EAST),
+        require("Patterns.convert")
     )
 )
 
