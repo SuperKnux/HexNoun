@@ -7,7 +7,7 @@ it's made for the hexjam, i started it just a few hours before the due date at l
 
 but it does have a pattern to convert between [hexical](https://modrinth.com/mod/hexical/) and [hexal](https://modrinth.com/mod/hexal)([moreiotas](https://modrinth.com/mod/moreiotas)) types, and i was planning on having that pattern convert between a few more types
 
-to run this, you can clone this repo right into .minecraft/allium, unzipping optional
+to run this, you can clone this repo and put the folder right into .minecraft/allium, or put the zip from the releases page into .minecraft/allium
 
 ![image](https://github.com/user-attachments/assets/eda2b844-3612-45af-8cec-c5efef20b11b)
 
