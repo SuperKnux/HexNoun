@@ -4,16 +4,22 @@ local Identifier = require("net.minecraft.util.Identifier")
 local Registries = require("net.minecraft.registry.Registries")
 
 local StringIota = require("ram.talia.moreiotas.api.casting.iota.StringIota")
-local IdentifierIota = require("miyucomics.hexical.casting.iotas.IdentifierIota")
+local IdentifierIota = require("miyucomics.hexpose.iotas.IdentifierIota")
 local ItemTypeIota = require("ram.talia.moreiotas.api.casting.iota.ItemTypeIota")
 local NullIota = require("at.petrak.hexcasting.api.casting.iota.NullIota")
 
 local iotaConversions = {
-    ["miyucomics.hexical.casting.iotas.IdentifierIota"] = function(iota)
+    ["miyucomics.hexpose.iotas.IdentifierIota"] = function(iota)
         return ItemTypeIota(Registries.ITEM:get(iota:getIdentifier()))
     end,
     ["ram.talia.moreiotas.api.casting.iota.ItemTypeIota"] = function(iota)
-        return IdentifierIota(Identifier(iota:getItem():toString()))
+		local tag = iota:serialize()
+		print("changed")
+		local id = tag:getString("item")
+		if #id == 0 then
+			id = tag:getString("block")
+		end
+        return IdentifierIota(Identifier(id))
     end,
 }
 
