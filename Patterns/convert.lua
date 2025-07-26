@@ -7,6 +7,9 @@ local StringIota = require("ram.talia.moreiotas.api.casting.iota.StringIota")
 local IdentifierIota = require("miyucomics.hexpose.iotas.IdentifierIota")
 local ItemTypeIota = require("ram.talia.moreiotas.api.casting.iota.ItemTypeIota")
 local NullIota = require("at.petrak.hexcasting.api.casting.iota.NullIota")
+local MishapNotEnoughArgs = require("at.petrak.hexcasting.api.casting.mishaps.MishapNotEnoughArgs")
+local MishapInvalidIota = require("at.petrak.hexcasting.api.casting.mishaps.MishapInvalidIota")
+local Text = require("net.minecraft.text.Text")
 
 local iotaConversions = {
     ["miyucomics.hexpose.iotas.IdentifierIota"] = function(iota)
@@ -27,14 +30,20 @@ return function(env, image, continuation)
     local stack = image.stack:toArray()
 
     local iota = table.remove(stack)
+
+    if not iota then
+        java.exception(MishapNotEnoughArgs(1, 0))
+    end
+
     local iotaType = iota:getClass():getName()
+    print(iotaType)
 
     local handler = iotaConversions[iotaType]
 
     if handler then
         table.insert(stack, handler(iota))
     else
-        table.insert(stack, NullIota()) -- TODO: Mishaps
+        java.exception(MishapInvalidIota.ofType(iota, 0, "identifier_or_itemtype"))
     end
 
     local newImage = image:copy(stack, image.parenCount, image.parenthesized, image.escapeNext, image.opsConsumed + 1, image.userData)
